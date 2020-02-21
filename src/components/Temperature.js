@@ -22,7 +22,7 @@ export class Temperature extends Component {
         return (
             <div>
                 <p>TEMPERTURE COMPONENT</p>
-                <p>{ this.state.location ? this.state.location : 'NO DATA' }</p>
+                {/* <p>{ this.state.location ? this.state.location : 'NO DATA' }</p> */}
             </div>
         )
     }
