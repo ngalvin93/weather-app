@@ -9,12 +9,15 @@ export class Temperature extends Component {
     }
 
     componentDidMount() {
-        navigator.geolocation.getCurrentPosition((location)=> this.setState({location: location}))
-        console.log('fetching')
+        navigator.geolocation.getCurrentPosition((location)=> {
+            this.setState({location: location.coords})
+            console.log('the location', this.state.location)
+        })
         axios.get('https://fcc-weather-api.glitch.me/api/current?lat=35&lon=139')
             .then(res => {
                 this.setState({data: res})
                 console.log('the fetched data',res)
+                //console.log('the location', this.state.location)
             })
     }
 
