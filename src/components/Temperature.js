@@ -6,7 +6,8 @@ export class Temperature extends Component {
 
     state = {
         temp: null,
-        loading: false
+        loading: false,
+        unit: true
     }
 
     componentDidMount() {
@@ -29,7 +30,9 @@ export class Temperature extends Component {
     }
 
     switchUnit = (e) => {
-        console.log('clicked', e)
+        console.log('clicked', e.target.innerHTML)
+        this.setState({ unit: !this.state.unit })
+        console.log('UNIT',this.state.unit)
     }
 
     render() {
