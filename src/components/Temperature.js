@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios'
+import './Temperature.css'
 
 export class Temperature extends Component {
 
@@ -16,6 +17,10 @@ export class Temperature extends Component {
             axios.get(`https://fcc-weather-api.glitch.me/api/current?lat=${latitude}&lon=${longitude}`)
                 .then(res => {
                     console.log('fetched', res.data)
+                    let cTemp = res.data.main.temp
+                    console.log(cTemp, 'C')
+                    let fTemp = cTemp * 9 / 5 + 32
+                    console.log(fTemp, 'F')
                     this.setState({temp: res.data.main.temp})
                     console.log('temp',this.state.temp)
                     this.setState({ loading: false })
@@ -23,10 +28,14 @@ export class Temperature extends Component {
         })
     }
 
+    switchUnit = (e) => {
+        console.log('clicked', e)
+    }
+
     render() {
         return (
-            <div>
-                <p>{this.state.loading ? 'WAITING' : this.state.temp}</p>
+            <div id='unit-btn'>
+                <p onClick={ this.switchUnit }>{this.state.loading ? 'WAITING' : this.state.temp}</p>
             </div>
         )
     }
