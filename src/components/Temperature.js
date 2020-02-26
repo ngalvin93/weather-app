@@ -32,6 +32,7 @@ export class Temperature extends Component {
     switchUnit = (e) => {
         console.log('clicked', e.target.innerHTML)
         this.setState({ unit: !this.state.unit })
+        e.target.innerHTML = (this.state.unit ? e.target.innerHTML * 9 / 5 + 32 : e.target.innerHTML)
         console.log('UNIT',this.state.unit)
     }
 
