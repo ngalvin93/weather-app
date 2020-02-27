@@ -18,20 +18,19 @@ export class Temperature extends Component {
             axios.get(`https://fcc-weather-api.glitch.me/api/current?lat=${latitude}&lon=${longitude}`)
                 .then(res => {
                     console.log('fetched data', res.data)
-                    this.setState({temp: res.data.main.temp})
+                    this.setState({ temp: Math.floor(res.data.main.temp) })
                     console.log('state temp',this.state.temp)
                     this.setState({ loading: false })
                 })
         })
     }
 
-    switchUnit = (e) => {
-        console.log('clicked', e.target.innerHTML)
+    switchUnit = () => {
+        console.log('before clicking', !this.state.unit)
         this.setState({ unit: !this.state.unit })
-        //e.target.innerHTML = this.state.unit ? e.target.innerHTML : (9 * e.target.innerHTML + (32 * 5)) / 5
-        this.setState({ temp: this.state.unit ? (this.state.temp - 32) * 5 / 9 : this.state.temp * 9 / 5 + 32})
-        console.log('UNIT',this.state.unit)
-        console.log('temp',this.state.temp)
+        console.log(!this.state.unit ? 'ITS TRUE' : 'NAH FALSE')
+        this.setState({ temp: this.state.unit ? Math.floor(this.state.temp * 9 / 5 + 32) : Math.floor((this.state.temp - 32) * 5 / 9) })
+        console.log('THIS TEMP SAVED TO STATE',this.state.temp)
     }
 
     render() {
